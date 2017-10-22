@@ -1,0 +1,11 @@
+{
+  "name": "adf-pentaho",
+  "version": "1.0.1",
+  "description": "Alfresco ADF libraries for Pentaho integrations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francesco Corti",
+  "license": "MIT"
+}
