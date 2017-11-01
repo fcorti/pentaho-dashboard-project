@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AdfPentahoModule } from './app.component';
+import { AppComponent } from './app.component';
 
-import { AppComponent } from './adf-pentaho/adf-pentaho.module';
+import { AdfPentahoModule } from './adf-pentaho';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,10 @@ import { AppComponent } from './adf-pentaho/adf-pentaho.module';
     BrowserModule,
     AdfPentahoModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 {
   "name": "adf-pentaho",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Alfresco ADF libraries for Pentaho integrations.",
   "main": "index.js",
   "scripts": {

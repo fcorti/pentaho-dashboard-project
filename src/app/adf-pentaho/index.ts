@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HelloComponent } from './hello/hello.component';
+import { HttpModule } from '@angular/http';
+
+import { AdfPentahoDashboardComponent } from './src/app/adf-pentaho-dashboard/adf-pentaho-dashboard.component';
+import { AdfPentahoService } from './src/app/shared/adf-pentaho.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpModule
   ],
-  exports: [HelloComponent],
-  declarations: [HelloComponent]
+  providers: [
+    AdfPentahoService
+  ],
+  exports: [
+    AdfPentahoDashboardComponent
+  ],
+  declarations: [
+    AdfPentahoDashboardComponent
+  ]
 })
 export class AdfPentahoModule { }
