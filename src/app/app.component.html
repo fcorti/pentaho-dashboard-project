@@ -1,12 +1,62 @@
 <div style="text-align:center">
   <h1>
-    Welcome to {{title}}!
+    Welcome to Angular integration for Pentaho CDE Dashboards!
   </h1>
 </div>
+
+Before continuing, please check what is following:
+<ul>
+  <li>A Pentaho instance is up and running at 'localhost:8080/pentaho'.</li>
+  <li>A Pentaho CDE Dashboard exists at '/public/test.wcdf'.</li>
+  <li>The 'test.wcdf' dashboard accepts a paramter named 'param1'.</li>
+  <li>A copy of the 'test.wcdf' dashboard exists at '/public/test2.wcdf'.</li>
+  <li>The 'test2.wcdf' dashboard accepts the paramter named 'paramTest'.</li>
+</ul>
+
+<h1>
+  Test n.1 - A dashboard with an interactive filter.
+</h1>
 <div>
   <adf-pentaho-adf-pentaho-dashboard
-    id = "cippa"
-    pentahoPath = "/public/test.wcdf"
-    width = "500px">
+    id = "dash1"
+    pentahoPath = "/public/test.wcdf">
+  </adf-pentaho-adf-pentaho-dashboard>
+</div>
+
+<h1>
+  Test n.2 - An external HTML element controlling a dashboard.
+</h1>
+Update the filter on the first dashboard to see updated the second.
+<div>
+  <select id="externalHtmlElementId">
+    <option value="Classic Cars">Classic Cars</option>
+    <option value="Motorcycles">Motorcycles</option>
+    <option value="Planes">Planes</option>
+    <option value="Ships">Ships</option>
+    <option value="Trains">Trains</option>
+  </select>
+  <adf-pentaho-adf-pentaho-dashboard
+    id = "dash2"
+    pentahoPath = "/public/test2.wcdf"
+    [params] = "['paramTest']"
+    masterHtmlElementId = "externalHtmlElementId">
+  </adf-pentaho-adf-pentaho-dashboard>
+</div>
+
+<h1>
+  Test n.3 - A dashboard controlling the second dashboard.
+</h1>
+Update the filter on the first dashboard to see updated the second.
+<div>
+  <adf-pentaho-adf-pentaho-dashboard
+    id = "dash3"
+    pentahoPath = "/public/test.wcdf">
+  </adf-pentaho-adf-pentaho-dashboard>
+  <adf-pentaho-adf-pentaho-dashboard
+    id = "dash4"
+    pentahoPath = "/public/test2.wcdf"
+    [params] = "['paramTest']"
+    masterDashboardId = "dash3"
+    [masterDashboardParams] = "['param1']">
   </adf-pentaho-adf-pentaho-dashboard>
 </div>

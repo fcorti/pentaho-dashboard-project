@@ -9,8 +9,6 @@ import { AdfPentahoService } from './adf-pentaho/src/app/shared/adf-pentaho.serv
 })
 export class AppComponent implements AfterViewInit {
 
-  title = 'adf-pentaho package';
-
   constructor(private adfPentahoService: AdfPentahoService) {
   }
 

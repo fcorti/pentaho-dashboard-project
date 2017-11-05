@@ -57,7 +57,6 @@ export class AdfPentahoService {
       },
       error => {
         console.log(error);
-        alert("Pentaho login failed with message '" + error.statusText + "'."); 
       }
     );
 
@@ -75,7 +74,6 @@ export class AdfPentahoService {
       },
       error => { 
         console.log(error);
-        alert("Pentaho logout failed!\n\nStatus=" + error.status + "\nType=" + error.type + "\nOk=" + error.ok + "\nUrl=" + error.url); 
       }
     );
 
@@ -97,14 +95,103 @@ export class AdfPentahoService {
 
   }
 
-  renderDashboard(htmlId:string, path: string) {
+  renderDashboard(path: string, htmlId:string) {
 
-    var dashboardScriptElement = document.createElement("script");
-    dashboardScriptElement.type = "text/javascript";
-    dashboardScriptElement.innerHTML = "require([\"dash!" + path + "\"],function(Dashboard) { (new Dashboard(\"" + htmlId + "\")).render(); });";
+    var dashboardScriptElement = this.createDashboardScriptElement();
 
+    var jsCode = "";
+    jsCode += this.getJsCodeRequireStart(path);
+    jsCode += this.getJsCodeForSimpleDashboard(htmlId);
+    jsCode += this.getJsCodeRequireEnd();
+
+    dashboardScriptElement.innerHTML = jsCode;
     document.getElementById(htmlId).appendChild(dashboardScriptElement);
-
   }
 
+  renderDashboardDependingOnDashboard(
+    path: string,
+    htmlId:string,
+    params: string[],
+    masterDashboardHtmlId: string,
+    masterParams: string[]) {
+
+    var dashboardScriptElement = this.createDashboardScriptElement();
+
+    var jsCode = "";
+    jsCode += this.getJsCodeRequireStart(path);
+    jsCode += this.getJsCodeForDashboardDependingOnDashboard(htmlId, params, masterDashboardHtmlId, masterParams);
+    jsCode += this.getJsCodeRequireEnd();
+
+    dashboardScriptElement.innerHTML = jsCode;
+    document.getElementById(htmlId).appendChild(dashboardScriptElement);
+  }
+
+  renderDashboardDependingOnHtmlElement(
+    path: string,
+    htmlId:string,
+    params: string[],
+    masterHtmlElementId: string) {
+
+    var dashboardScriptElement = this.createDashboardScriptElement();
+
+    var jsCode = "";
+    jsCode += this.getJsCodeRequireStart(path);
+    jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementId);
+    jsCode += this.getJsCodeRequireEnd();
+
+    dashboardScriptElement.innerHTML = jsCode;
+    document.getElementById(htmlId).appendChild(dashboardScriptElement);
+  }
+
+  private createDashboardScriptElement():HTMLScriptElement {
+    var dashboardScriptElement = document.createElement("script");
+    dashboardScriptElement.type = "text/javascript";
+    return dashboardScriptElement;
+  }
+
+  private getJsCodeRequireStart(path: string):string {
+    return "require([\"dash!" + path + "\"] ";
+  }
+
+  private getJsCodeRequireEnd():string {
+    return "); ";
+  }
+
+  private getJsCodeForSimpleDashboard(htmlId:string):string {
+    return ", function(Dashboard) { var currentDashboard = new Dashboard(\"" + htmlId + "\"); currentDashboard.render(); }";
+  }
+
+  private getJsCodeForDashboardDependingOnDashboard(
+    htmlId:string,
+    params: string[],
+    masterDashboardHtmlId:string,
+    masterParams: string[]):string {
+
+    var jsCode = ", function(Dashboard) { ";
+    jsCode += "var currentDashboard = new Dashboard(\"" + htmlId + "\"); ";
+    jsCode += "currentDashboard.render(); ";
+    jsCode += "var masterDashboard = new Dashboard(\"" + masterDashboardHtmlId + "\"); ";
+    jsCode += "masterDashboard.render(); ";
+    for (let i in masterParams) {
+      jsCode += "masterDashboard.on(\"cdf " + masterParams[i] + ":fireChange\", function (evt) { currentDashboard.fireChange(\"" + params[i] + "\", evt.value); }); ";
+    }
+    jsCode += "} ";
+    
+    return jsCode;
+  }
+
+  private getJsCodeForDashboardDependingOnHtmlElement(
+    htmlId:string,
+    params: string[],
+    masterHtmlElementId:string):string {
+
+    var jsCode = ", function(Dashboard) { ";
+    jsCode += "var currentDashboard = new Dashboard(\"" + htmlId + "\"); ";
+    jsCode += "currentDashboard.render(); ";
+    jsCode += "var htmlElement = document.getElementById(\"" + masterHtmlElementId + "\"); ";
+    jsCode += "htmlElement.addEventListener(\"change\", function() { currentDashboard.fireChange(\"" + params[0] + "\", this.value); }); ";
+    jsCode += "} ";
+
+    return jsCode;
+  }
 }
