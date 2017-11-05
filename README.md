@@ -8,7 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Screenshot
 
-![Pentaho Dashboard](src/app/adf-pentaho/assets/screenshot_1.png)
+![Pentaho Dashboard](src/app/adf-pentaho/src/assets/screenshot_1.png)
 
 ## Development server
 

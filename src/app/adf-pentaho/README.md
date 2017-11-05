@@ -6,7 +6,7 @@ The project is tested in a generic Angular application but also to be used toget
 
 ## Screenshot
 
-![Pentaho Dashboard](assets/screenshot_1.png)
+![Pentaho Dashboard](src/assets/screenshot_1.png)
 
 ## Content of the package
 
