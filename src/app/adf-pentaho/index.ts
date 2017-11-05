@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 import { AdfPentahoDashboardComponent } from './src/app/adf-pentaho-dashboard/adf-pentaho-dashboard.component';
 import { AdfPentahoService } from './src/app/shared/adf-pentaho.service';
 
+export { AdfPentahoDashboardComponent } from './src/app/adf-pentaho-dashboard/adf-pentaho-dashboard.component';
+export { AdfPentahoService } from './src/app/shared/adf-pentaho.service';
+
 @NgModule({
   imports: [
     CommonModule,
