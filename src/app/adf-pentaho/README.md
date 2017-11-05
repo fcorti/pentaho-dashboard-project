@@ -4,6 +4,10 @@ This project contains the components and services to be used to integrate the Pe
 
 The project is tested in a generic Angular application but also to be used together with the [Alfresco Application Development Framework](https://github.com/Alfresco/alfresco-ng2-components) components.
 
+## Screenshot
+
+![Pentaho Dashboard](assets/screenshot_1.png)
+
 ## Content of the package
 
 The package contains:
