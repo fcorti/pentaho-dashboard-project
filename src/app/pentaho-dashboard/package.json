@@ -1,11 +1,32 @@
 {
   "name": "pentaho-dashboard",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Pentaho dashboards library for Angular.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Francesco Corti",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fcorti/pentaho-dashboard-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fcorti/pentaho-dashboard-project/issues"
+  },
+  "contributors": {
+    "0": {
+      "name": "Francesco Corti",
+      "email": "fcorti@gmail.com"
+    }
+  },
+  "keywords": {
+    "0": "pentaho",
+    "1": "angular2",
+    "2": "typescript",
+    "3": "ctools",
+    "4": "cde",
+    "5": "requirejs"
+}
 }
