@@ -1,7 +1,7 @@
 {
-  "name": "adf-pentaho",
-  "version": "1.0.4",
-  "description": "Alfresco ADF libraries for Pentaho integrations.",
+  "name": "pentaho-dashboard",
+  "version": "0.0.1",
+  "description": "Pentaho dashboards library for Angular.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

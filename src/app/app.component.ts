@@ -1,27 +1,27 @@
 import { Component, AfterViewInit } from '@angular/core';
 
-import { AdfPentahoService } from './adf-pentaho/src/app/shared/adf-pentaho.service';
+import { PentahoDashboardService } from './pentaho-dashboard/src/app/shared/pentaho-dashboard.service';
 
 @Component({
-  selector: 'adf-pentaho-root',
+  selector: 'pentaho-dashboard-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
 
-  constructor(private adfPentahoService: AdfPentahoService) {
+  constructor(private pentahoDashboardService: PentahoDashboardService) {
   }
 
   ngAfterViewInit() {
 
     // Credentials.
-    this.adfPentahoService.setUsername("admin");
-    this.adfPentahoService.setPassword("password");
+    this.pentahoDashboardService.setUsername("admin");
+    this.pentahoDashboardService.setPassword("password");
 
     // Login.
-    if (this.adfPentahoService.isNotLoggedIn()) {
+    if (this.pentahoDashboardService.isNotLoggedIn()) {
       alert("Not logged... press OK to login and reload the page automatically.");
-      this.adfPentahoService.logIn("/");
+      this.pentahoDashboardService.logIn("/");
     }
   }
 

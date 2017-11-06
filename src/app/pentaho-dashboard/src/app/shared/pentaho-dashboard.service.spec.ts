@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AdfPentahoService } from './adf-pentaho.service';
+import { PentahoDashboardService } from './pentaho-dashboard.service';
 
 describe('AdfPentahoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AdfPentahoService]
+      providers: [PentahoDashboardService]
     });
   });
 
-  it('should be created', inject([AdfPentahoService], (service: AdfPentahoService) => {
+  it('should be created', inject([PentahoDashboardService], (service: PentahoDashboardService) => {
     expect(service).toBeTruthy();
   }));
 });

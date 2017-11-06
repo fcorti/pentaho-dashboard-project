@@ -118,13 +118,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "adf-pentaho",
+      "pentaho-dashboard",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "adf-pentaho",
+      "pentaho-dashboard",
       "kebab-case"
     ],
     "use-input-property-decorator": true,

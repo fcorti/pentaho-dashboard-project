@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { AdfPentahoModule } from './adf-pentaho';
+import { PentahoDashboardModule } from './pentaho-dashboard';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,7 @@ import { AdfPentahoModule } from './adf-pentaho';
   ],
   imports: [
     BrowserModule,
-    AdfPentahoModule
+    PentahoDashboardModule
   ],
   providers: [
   ],

@@ -17,10 +17,10 @@ Before continuing, please check what is following:
   Test n.1 - A dashboard with an interactive filter.
 </h1>
 <div>
-  <adf-pentaho-adf-pentaho-dashboard
+  <pentaho-dashboard
     id = "dash1"
     pentahoPath = "/public/test.wcdf">
-  </adf-pentaho-adf-pentaho-dashboard>
+  </pentaho-dashboard>
 </div>
 
 <h1>
@@ -35,12 +35,12 @@ Update the filter on the first dashboard to see updated the second.
     <option value="Ships">Ships</option>
     <option value="Trains">Trains</option>
   </select>
-  <adf-pentaho-adf-pentaho-dashboard
+  <pentaho-dashboard
     id = "dash2"
     pentahoPath = "/public/test2.wcdf"
     [params] = "['paramTest']"
     masterHtmlElementId = "externalHtmlElementId">
-  </adf-pentaho-adf-pentaho-dashboard>
+  </pentaho-dashboard>
 </div>
 
 <h1>
@@ -48,15 +48,15 @@ Update the filter on the first dashboard to see updated the second.
 </h1>
 Update the filter on the first dashboard to see updated the second.
 <div>
-  <adf-pentaho-adf-pentaho-dashboard
+  <pentaho-dashboard
     id = "dash3"
     pentahoPath = "/public/test.wcdf">
-  </adf-pentaho-adf-pentaho-dashboard>
-  <adf-pentaho-adf-pentaho-dashboard
+  </pentaho-dashboard>
+  <pentaho-dashboard
     id = "dash4"
     pentahoPath = "/public/test2.wcdf"
     [params] = "['paramTest']"
     masterDashboardId = "dash3"
     [masterDashboardParams] = "['param1']">
-  </adf-pentaho-adf-pentaho-dashboard>
+  </pentaho-dashboard>
 </div>

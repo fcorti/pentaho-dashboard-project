@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 @Injectable()
-export class AdfPentahoService {
+export class PentahoDashboardService {
 
   static readonly PENTAHO_HOME_URI = "/pentaho/Home";
   static readonly PENTAHO_LOGOUT_URI = "/pentaho/Logout";
@@ -45,11 +45,11 @@ export class AdfPentahoService {
     headers.append("Authorization", "Basic " + btoa(this.username + ":" + this.password));
 
     this.http.get(
-      AdfPentahoService.PENTAHO_HOME_URI,
+      PentahoDashboardService.PENTAHO_HOME_URI,
       { headers: headers })
     .subscribe(
       data => {
-        if (data.status == 200 && data.url.indexOf(AdfPentahoService.PENTAHO_HOME_URI) >= 0) {
+        if (data.status == 200 && data.url.indexOf(PentahoDashboardService.PENTAHO_HOME_URI) >= 0) {
           if (targetUrl != null) {
             window.location.href = targetUrl;
           }
@@ -65,7 +65,7 @@ export class AdfPentahoService {
   logOut(targetUrl: string) {
 
     this.http.get(
-      AdfPentahoService.PENTAHO_LOGOUT_URI)
+      PentahoDashboardService.PENTAHO_LOGOUT_URI)
     .subscribe(
       data => {
         if (targetUrl != null) {
@@ -82,10 +82,10 @@ export class AdfPentahoService {
   addHeaderLinks() {
 
     // Script tag is not rendered in an Angular application, so it is dynamicallly added to the DOM (not a best practice).
-    if (document.getElementById(AdfPentahoService.PENTAHO_HEADER_BOOTSTRAP_LINK_ID) == null) {
+    if (document.getElementById(PentahoDashboardService.PENTAHO_HEADER_BOOTSTRAP_LINK_ID) == null) {
 
       var headerLinkElement = document.createElement("link");
-      headerLinkElement.id = AdfPentahoService.PENTAHO_HEADER_BOOTSTRAP_LINK_ID;
+      headerLinkElement.id = PentahoDashboardService.PENTAHO_HEADER_BOOTSTRAP_LINK_ID;
       headerLinkElement.rel = "stylesheet";
       headerLinkElement.type = "text/css";
       headerLinkElement.href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css";

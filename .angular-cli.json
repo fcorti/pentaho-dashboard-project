@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "adf-pentaho-project"
+    "name": "pentaho-dashboard-project"
   },
   "apps": [
     {
@@ -17,12 +17,12 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "adf-pentaho",
+      "prefix": "pentaho-dashboard",
       "styles": [
         "styles.css"
       ],
       "scripts": [
-        "app/adf-pentaho/src/assets/pentahoHeaderScript.js"
+        "app/pentaho-dashboard/src/assets/pentahoHeaderScript.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
