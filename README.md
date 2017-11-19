@@ -4,7 +4,7 @@ This project contains the Angular 2+ integration for Pentaho CDE Dashboards.
 
 The project is tested in a generic Angular application but also to be used together with the [Alfresco Application Development Framework](https://github.com/Alfresco/alfresco-ng2-components) components.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.2.
 
 ## Screenshot
 
