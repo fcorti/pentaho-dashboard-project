@@ -1,32 +1,14 @@
 # Pentaho-dashboard project
 
-This project contains the Angular 2+ integration for Pentaho CDE Dashboards.
+This project contains the Angular JS integration for Pentaho Dashboards.
 
 The project is tested in a generic Angular application but also to be used together with the [Alfresco Application Development Framework](https://github.com/Alfresco/alfresco-ng2-components) components.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.2.
+For a complete documentation check the GitBook at the following link.
+
+|[https://www.gitbook.com/book/fcorti/pentaho-dashboard-project](https://www.gitbook.com/book/fcorti/pentaho-dashboard-project)
 
 ## Screenshot
 
 ![Pentaho Dashboard](src/app/pentaho-dashboard/src/assets/screenshot_1.png)
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Publishing the pentaho-dashboard components
-
-The NPM package is published [here](https://www.npmjs.com/package/pentaho-dashboard).
-To publish the release, update the `package.json` file with the correct `version` tag value, then follow the commands below from a terminal.
-
-```sh
-cd src/app/pentaho-dashboard/
-npm publish
-```
-
-Pay attention that only an incremental version of the release can be published.
-To remove the release from the public repository, use `npm unpublish pentaho-dashboard@<version> --force`. Removing the releases is discouraged but sometimes can help.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
