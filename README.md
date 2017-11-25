@@ -6,7 +6,7 @@ The project is tested in a generic Angular application but also to be used toget
 
 For a complete documentation check the GitBook at the following link.
 
-|[https://www.gitbook.com/book/fcorti/pentaho-dashboard-project](https://www.gitbook.com/book/fcorti/pentaho-dashboard-project)
+[![GitBook](src/assets/gitbook.png)](https://www.gitbook.com/book/fcorti/pentaho-dashboard-project)
 
 ## Screenshot
 
