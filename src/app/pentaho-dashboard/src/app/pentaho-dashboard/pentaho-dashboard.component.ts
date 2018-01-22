@@ -24,8 +24,8 @@ export class PentahoDashboardComponent implements AfterViewInit {
   @Input('masterDashboardParams')
   private masterDashboardParams : string[] = [];
 
-  @Input('masterHtmlElementId')
-  private masterHtmlElementId : string = null;
+  @Input('masterHtmlElementIds')
+  private masterHtmlElementIds : string[] = [];
 
   constructor(private pentahoDashboardService: PentahoDashboardService) {
   }
@@ -39,8 +39,8 @@ export class PentahoDashboardComponent implements AfterViewInit {
       if (this.masterDashboardId != null) {
         this.pentahoDashboardService.renderDashboardDependingOnDashboard(this.pentahoPath, this.id, this.params, this.masterDashboardId, this.masterDashboardParams);
       }
-      else if (this.masterHtmlElementId != null) {
-        this.pentahoDashboardService.renderDashboardDependingOnHtmlElement(this.pentahoPath, this.id, this.params, this.masterHtmlElementId);
+      else if (this.masterHtmlElementIds != []) {
+        this.pentahoDashboardService.renderDashboardDependingOnHtmlElement(this.pentahoPath, this.id, this.params, this.masterHtmlElementIds);
       }
       else {
         this.pentahoDashboardService.renderDashboard(this.pentahoPath, this.id);        

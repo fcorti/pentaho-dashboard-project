@@ -130,13 +130,13 @@ export class PentahoDashboardService {
     path: string,
     htmlId:string,
     params: string[],
-    masterHtmlElementId: string) {
+    masterHtmlElementIds: string[]) {
 
     var dashboardScriptElement = this.createDashboardScriptElement();
 
     var jsCode = "";
     jsCode += this.getJsCodeRequireStart(path);
-    jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementId);
+    jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementIds);
     jsCode += this.getJsCodeRequireEnd();
 
     dashboardScriptElement.innerHTML = jsCode;
@@ -183,13 +183,15 @@ export class PentahoDashboardService {
   private getJsCodeForDashboardDependingOnHtmlElement(
     htmlId:string,
     params: string[],
-    masterHtmlElementId:string):string {
+    masterHtmlElementIds: string[]):string {
 
     var jsCode = ", function(Dashboard) { ";
     jsCode += "var currentDashboard = new Dashboard(\"" + htmlId + "\"); ";
     jsCode += "currentDashboard.render(); ";
-    jsCode += "var htmlElement = document.getElementById(\"" + masterHtmlElementId + "\"); ";
-    jsCode += "htmlElement.addEventListener(\"change\", function() { currentDashboard.fireChange(\"" + params[0] + "\", this.value); }); ";
+    for (let i in masterHtmlElementIds) {
+      jsCode += "var htmlElement" + i + " = document.getElementById(\"" + masterHtmlElementIds[i] + "\"); ";
+      jsCode += "htmlElement" + i + ".addEventListener(\"change\", function() { currentDashboard.fireChange(\"" + params[i] + "\", this.value); }); ";
+    }
     jsCode += "} ";
 
     return jsCode;

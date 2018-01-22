@@ -1,6 +1,6 @@
 {
   "name": "pentaho-dashboard",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pentaho dashboards library for Angular.",
   "main": "index.js",
   "scripts": {
