@@ -100,7 +100,7 @@ export class PentahoDashboardService {
     var dashboardScriptElement = this.createDashboardScriptElement();
 
     var jsCode = "";
-    jsCode += this.getJsCodeRequireStart(path);
+    jsCode += this.getJsCodeRequireStart([path]);
     jsCode += this.getJsCodeForSimpleDashboard(htmlId);
     jsCode += this.getJsCodeRequireEnd();
 
@@ -115,10 +115,12 @@ export class PentahoDashboardService {
     masterDashboardHtmlId: string,
     masterParams: string[]) {
 
+    var masterDashboardPath = document.getElementById(masterDashboardHtmlId).getAttribute("pentahoPath");
+
     var dashboardScriptElement = this.createDashboardScriptElement();
 
     var jsCode = "";
-    jsCode += this.getJsCodeRequireStart(path);
+    jsCode += this.getJsCodeRequireStart([masterDashboardPath, path]);
     jsCode += this.getJsCodeForDashboardDependingOnDashboard(htmlId, params, masterDashboardHtmlId, masterParams);
     jsCode += this.getJsCodeRequireEnd();
 
@@ -135,7 +137,7 @@ export class PentahoDashboardService {
     var dashboardScriptElement = this.createDashboardScriptElement();
 
     var jsCode = "";
-    jsCode += this.getJsCodeRequireStart(path);
+    jsCode += this.getJsCodeRequireStart([path]);
     jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementIds);
     jsCode += this.getJsCodeRequireEnd();
 
@@ -149,8 +151,14 @@ export class PentahoDashboardService {
     return dashboardScriptElement;
   }
 
-  private getJsCodeRequireStart(path: string):string {
-    return "require([\"dash!" + path + "\"] ";
+  private getJsCodeRequireStart(paths: string[]):string {
+    var result = "require([";
+    for (var i in paths) {
+      result += "\"dash!" + paths[i] + "\",";
+    }
+    result = result.substring(0, result.length - 1);
+    result += "] ";
+    return result;
   }
 
   private getJsCodeRequireEnd():string {
@@ -167,10 +175,10 @@ export class PentahoDashboardService {
     masterDashboardHtmlId:string,
     masterParams: string[]):string {
 
-    var jsCode = ", function(Dashboard) { ";
+    var jsCode = ", function(MasterDashboard, Dashboard) { ";
     jsCode += "var currentDashboard = new Dashboard(\"" + htmlId + "\"); ";
     jsCode += "currentDashboard.render(); ";
-    jsCode += "var masterDashboard = new Dashboard(\"" + masterDashboardHtmlId + "\"); ";
+    jsCode += "var masterDashboard = new MasterDashboard(\"" + masterDashboardHtmlId + "\"); ";
     jsCode += "masterDashboard.render(); ";
     for (let i in masterParams) {
       jsCode += "masterDashboard.on(\"cdf " + masterParams[i] + ":fireChange\", function (evt) { currentDashboard.fireChange(\"" + params[i] + "\", evt.value); }); ";
