@@ -29,8 +29,8 @@ Before continuing, please check what is following:
 Update the filter below to update the dashboard.
 <div>
   <select id="externalHtmlElementId">
-    <option value="Classic Cars">Classic Cars</option>
     <option value="Motorcycles">Motorcycles</option>
+    <option value="Classic Cars">Classic Cars</option>
     <option value="Planes">Planes</option>
     <option value="Ships">Ships</option>
     <option value="Trains">Trains</option>
@@ -39,7 +39,8 @@ Update the filter below to update the dashboard.
     id = "dashboard2"
     pentahoPath = "/public/sample2.wcdf"
     [params] = "['param2']"
-    [masterHtmlElementIds] = "['externalHtmlElementId']">
+    [masterHtmlElementIds] = "['externalHtmlElementId']"
+    [setDefaults]="true">
   </pentaho-dashboard>
 </div>
 

@@ -132,13 +132,14 @@ export class PentahoDashboardService {
     path: string,
     htmlId:string,
     params: string[],
-    masterHtmlElementIds: string[]) {
+    masterHtmlElementIds: string[],
+    setDefaults: boolean) {
 
     var dashboardScriptElement = this.createDashboardScriptElement();
 
     var jsCode = "";
     jsCode += this.getJsCodeRequireStart([path]);
-    jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementIds);
+    jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementIds, setDefaults);
     jsCode += this.getJsCodeRequireEnd();
 
     dashboardScriptElement.innerHTML = jsCode;
@@ -176,13 +177,17 @@ export class PentahoDashboardService {
     masterParams: string[]):string {
 
     var jsCode = ", function(MasterDashboard, Dashboard) { ";
+
     jsCode += "var currentDashboard = new Dashboard(\"" + htmlId + "\"); ";
     jsCode += "currentDashboard.render(); ";
+
     jsCode += "var masterDashboard = new MasterDashboard(\"" + masterDashboardHtmlId + "\"); ";
     jsCode += "masterDashboard.render(); ";
+
     for (let i in masterParams) {
       jsCode += "masterDashboard.on(\"cdf " + masterParams[i] + ":fireChange\", function (evt) { currentDashboard.fireChange(\"" + params[i] + "\", evt.value); }); ";
     }
+
     jsCode += "} ";
     
     return jsCode;
@@ -191,15 +196,22 @@ export class PentahoDashboardService {
   private getJsCodeForDashboardDependingOnHtmlElement(
     htmlId:string,
     params: string[],
-    masterHtmlElementIds: string[]):string {
+    masterHtmlElementIds: string[],
+    setDefaults: boolean):string {
 
     var jsCode = ", function(Dashboard) { ";
+
     jsCode += "var currentDashboard = new Dashboard(\"" + htmlId + "\"); ";
     jsCode += "currentDashboard.render(); ";
+
     for (let i in masterHtmlElementIds) {
       jsCode += "var htmlElement" + i + " = document.getElementById(\"" + masterHtmlElementIds[i] + "\"); ";
       jsCode += "htmlElement" + i + ".addEventListener(\"change\", function() { currentDashboard.fireChange(\"" + params[i] + "\", this.value); }); ";
+      if (setDefaults) {
+        jsCode += "currentDashboard.setParameter(\"" + params[i] + "\", htmlElement"+ i +".value); ";
+      }
     }
+
     jsCode += "} ";
 
     return jsCode;
