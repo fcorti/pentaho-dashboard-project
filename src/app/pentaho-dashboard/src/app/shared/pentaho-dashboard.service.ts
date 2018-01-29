@@ -133,13 +133,14 @@ export class PentahoDashboardService {
     htmlId:string,
     params: string[],
     masterHtmlElementIds: string[],
+    masterHtmlButtonId: string,
     setDefaults: boolean) {
 
     var dashboardScriptElement = this.createDashboardScriptElement();
 
     var jsCode = "";
     jsCode += this.getJsCodeRequireStart([path]);
-    jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementIds, setDefaults);
+    jsCode += this.getJsCodeForDashboardDependingOnHtmlElement(htmlId, params, masterHtmlElementIds, masterHtmlButtonId, setDefaults);
     jsCode += this.getJsCodeRequireEnd();
 
     dashboardScriptElement.innerHTML = jsCode;
@@ -197,6 +198,7 @@ export class PentahoDashboardService {
     htmlId:string,
     params: string[],
     masterHtmlElementIds: string[],
+    masterHtmlButtonId: string,
     setDefaults: boolean):string {
 
     var jsCode = ", function(Dashboard) { ";
@@ -204,12 +206,27 @@ export class PentahoDashboardService {
     jsCode += "var currentDashboard = new Dashboard(\"" + htmlId + "\"); ";
     jsCode += "currentDashboard.render(); ";
 
-    for (let i in masterHtmlElementIds) {
-      jsCode += "var htmlElement" + i + " = document.getElementById(\"" + masterHtmlElementIds[i] + "\"); ";
-      jsCode += "htmlElement" + i + ".addEventListener(\"change\", function() { currentDashboard.fireChange(\"" + params[i] + "\", this.value); }); ";
-      if (setDefaults) {
-        jsCode += "currentDashboard.setParameter(\"" + params[i] + "\", htmlElement"+ i +".value); ";
+    if (masterHtmlButtonId == null) {
+
+      for (let i in masterHtmlElementIds) {
+        jsCode += "var htmlElement" + i + " = document.getElementById(\"" + masterHtmlElementIds[i] + "\"); ";
+        jsCode += "htmlElement" + i + ".addEventListener(\"change\", function() { currentDashboard.fireChange(\"" + params[i] + "\", this.value); }); ";
+        if (setDefaults) {
+          jsCode += "currentDashboard.setParameter(\"" + params[i] + "\", htmlElement"+ i +".value); ";
+        }
       }
+
+    }
+    else {
+
+      jsCode += "var buttonObj = document.getElementById(\"" + masterHtmlButtonId + "\"); ";
+
+      jsCode += "buttonObj.addEventListener(\"click\", function() { ";
+      for (let i in masterHtmlElementIds) {
+        jsCode += "currentDashboard.fireChange(\"" + params[i] + "\", document.getElementById(\"" + masterHtmlElementIds[i] + "\").value); ";
+      }
+      jsCode += " }); ";
+
     }
 
     jsCode += "} ";

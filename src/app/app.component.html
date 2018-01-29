@@ -45,6 +45,28 @@ Update the filter below to update the dashboard.
 </div>
 
 <h1>
+  Test n.2 bis - An external HTML element controlling a dashboard, only when the button is pressed.
+</h1>
+Update the filter below and press the button to update the dashboard.
+<div>
+  <select id="externalHtmlElement2Id">
+    <option value="Motorcycles">Motorcycles</option>
+    <option value="Classic Cars">Classic Cars</option>
+    <option value="Planes">Planes</option>
+    <option value="Ships">Ships</option>
+    <option value="Trains">Trains</option>
+  </select>
+  <button id="externalHtmlButtonId" type="button">Click Me!</button>
+  <pentaho-dashboard
+    id = "dashboard9"
+    pentahoPath = "/public/sample2.wcdf"
+    [params] = "['param2']"
+    [masterHtmlElementIds] = "['externalHtmlElement2Id']"
+    masterHtmlButtonId = "externalHtmlButtonId">
+  </pentaho-dashboard>
+</div>
+
+<h1>
   Test n.3 - A dashboard controlling the second dashboard.
 </h1>
 Update the filter on the first dashboard to updated the second accordingly.
@@ -61,3 +83,4 @@ Update the filter on the first dashboard to updated the second accordingly.
     [masterDashboardParams] = "['param1']">
   </pentaho-dashboard>
 </div>
+-->
